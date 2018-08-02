@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dt/express-filestack.svg)](https://www.npmjs.com/package/express-filestack)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Express middleware to pipe multipart/form-data (upload) requests to Filestack.
+Express middleware to pipe multipart/form-data (upload) requests to [Filestack](https://www.filestack.com/).
 
 ## Install
 
@@ -16,7 +16,9 @@ npm install express-filestack
 yarn add express-filestack
 ```
 
-## Usage
+## Simple Usage
+
+Set your Filestack [upload URL](https://www.filestack.com/docs/api/file/#store) as an environment variable under the key [FILESTACK_UPLOAD_URL](https://github.com/mesaugat/express-filestack/blob/master/index.js#L10).
 
 ```js
 const express = require('express')
@@ -29,6 +31,18 @@ app.use('/uploads', filestack, (req, res) => {
 })
 
 app.listen(5000, () => console.log('Example app listening on port 5000!'));
+```
+
+## Alternative Usage
+
+Set your Filestack [upload URL](https://www.filestack.com/docs/api/file/#store) by passing it through the middleware.
+
+```js
+const uploadUrl = 'https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'
+
+app.use('/uploads', filestack({ uploadUrl }), (req, res) => {
+  res.json(res.file)
+})
 ```
 
 ## License
