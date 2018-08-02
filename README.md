@@ -1,5 +1,9 @@
 # express-filestack
 
+[![npm](https://img.shields.io/npm/v/express-filestack.svg)](https://www.npmjs.com/package/express-filestack)
+[![npm](https://img.shields.io/npm/dt/express-filestack.svg)](https://www.npmjs.com/package/express-filestack)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Express middleware to pipe multipart/form-data (upload) requests to Filestack.
 
 ## Install
