@@ -1,0 +1,29 @@
+{
+  "name": "express-filestack",
+  "version": "1.0.0",
+  "description": "Express middleware to pipe multipart/form-data (upload) requests to Filestack",
+  "main": "index.js",
+  "author": "Saugat Acharya <mesaugat@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/mesaugat/express-filestack",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "express",
+    "middleware",
+    "filestack",
+    "upload",
+    "multipart"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix"
+  },
+  "dependencies": {
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
+}
