@@ -21,6 +21,7 @@
     "lint:fix": "standard --fix"
   },
   "dependencies": {
+    "debug": "^3.1.0",
     "request": "^2.87.0"
   },
   "devDependencies": {

@@ -1,6 +1,8 @@
 const zlib = require('zlib')
 const request = require('request')
 
+const debug = require('debug')('express-filestack')
+
 /**
  * Express middleware to pipe multipart/form-data requests to Filestack API.
  *
@@ -9,7 +11,7 @@ const request = require('request')
 module.exports = function (opts) {
   let uploadUrl = process.env.FILESTACK_UPLOAD_URL
 
-  if (opts && opts.uploadUrl) {
+  if (opts.uploadUrl) {
     uploadUrl = opts.uploadUrl
   }
 
@@ -27,10 +29,14 @@ module.exports = function (opts) {
       encoding: null
     }
 
+    debug('piping request with the following headers %o', req.headers)
+
     const stream = req.pipe(request.post(options))
 
     stream.on('response', function (resp) {
       const chunks = []
+
+      debug('gathering response')
 
       resp.on('data', function (chunk) {
         chunks.push(chunk)
@@ -39,12 +45,16 @@ module.exports = function (opts) {
       resp.on('end', function () {
         const buffer = Buffer.concat(chunks)
 
+        debug('decoding gzip response')
+
         zlib.gunzip(buffer, function (err, decoded) {
           if (err) {
             throw new Error('Cannot decompress gzip response')
           }
 
           res.file = decoded.toString()
+
+          debug('file upload response %O', res.file)
 
           next()
         })
