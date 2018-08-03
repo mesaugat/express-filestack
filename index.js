@@ -16,6 +16,10 @@ module.exports = function (opts) {
     uploadUrl = opts.uploadUrl
   }
 
+  if (opts.debug === true) {
+    debug.enabled = true
+  }
+
   return function (req, res, next) {
     // The upload won't work without www in the URL ¯\_(ツ)_/¯
     if (uploadUrl.indexOf('https://www.filestackapi.com/api') !== 0) {
