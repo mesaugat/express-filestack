@@ -1,5 +1,6 @@
 const zlib = require('zlib')
 const request = require('request')
+const omit = require('lodash.omit')
 
 const debug = require('debug')('express-filestack')
 
@@ -19,6 +20,10 @@ module.exports = function (opts) {
     // The upload won't work without www in the URL ¯\_(ツ)_/¯
     if (uploadUrl.indexOf('https://www.filestackapi.com/api') !== 0) {
       throw new Error('Please use a valid Filestack upload url')
+    }
+
+    if (opts.omitHeaders && Array.isArray(opts.omitHeaders)) {
+      req.headers = omit(req.headers, opts.omitHeaders)
     }
 
     const options = {
