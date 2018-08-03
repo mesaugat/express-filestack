@@ -57,13 +57,15 @@ module.exports = function (opts) {
             throw new Error('Cannot decompress gzip response')
           }
 
-          res.file = decoded.toString()
+          res.filestack = decoded.toString()
 
-          debug('file upload response %O', res.file)
+          debug('file upload response %s', res.filestack)
 
           next()
         })
       })
     })
+
+    // Do we need to handle the stream error event?
   }
 }
