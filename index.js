@@ -14,6 +14,11 @@ module.exports = function (opts) {
   }
 
   return function (req, res, next) {
+    // The upload won't work without www in the URL ¯\_(ツ)_/¯
+    if (uploadUrl.indexOf('https://www.filestackapi.com/api') !== 0) {
+      throw new Error('Please use a valid Filestack upload url')
+    }
+
     const options = {
       url: uploadUrl,
       headers: {
