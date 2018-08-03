@@ -8,23 +8,27 @@ Express middleware to pipe multipart/form-data (upload) requests to [Filestack](
 
 ## Why?
 
-This middleware allows you to create your own express endpoint for `multipart/form-data` requests and acts as an intermediatory to upload your files to Filestack.
+This middleware allows you to create an intermediary endpoint for `multipart/form-data` requests which uploads your file to Filestack.
 
 ## Install
 
-```bash
+```sh
 npm install express-filestack
 ```
 
-```bash
+```sh
 yarn add express-filestack
 ```
 
 ## Usage
 
-Set your Filestack [upload URL](https://www.filestack.com/docs/api/file/#store) as an environment variable `FILESTACK_UPLOAD_URL='https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'`.
+Set your Filestack [upload URL](https://www.filestack.com/docs/api/file/#store) as an environment variable.
 
-The middleware on completion will attach a `filestack` key to the response object which can be accessed using `res.filestack`. `res.filestack` will contain a strigified JSON object if the upload is succcessful.
+```sh
+FILESTACK_UPLOAD_URL='https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'`
+```
+
+On completion the middleware will attach a `filestack` key to the express response object. It can be accessed as `res.filestack`. The key will contain a strigified JSON object if the upload is succcessful.
 
 **Note: For cases when the API key is wrong, `res.filestack` will contain a response string and not stringified JSON.**
 
