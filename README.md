@@ -25,10 +25,10 @@ yarn add express-filestack
 Set your Filestack [upload URL](https://www.filestack.com/docs/api/file/#store) as an environment variable.
 
 ```sh
-FILESTACK_UPLOAD_URL='https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'`
+FILESTACK_UPLOAD_URL='https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'
 ```
 
-On completion the middleware will attach a `filestack` key to the express response object. It can be accessed as `res.filestack`. The key will contain a strigified JSON object if the upload is succcessful.
+On completion the middleware will attach a `filestack` key to the express response object. It can be accessed as `res.filestack`. The key will contain a stringified JSON object if the upload is succcessful.
 
 **Note: For cases when the API key is wrong, `res.filestack` will contain a response string and not stringified JSON.**
 
@@ -46,7 +46,7 @@ app.post('/uploads', filestack, (req, res) => {
 
     res.json({ data })
   } catch (err) {
-    // An uncsuccessful response string as a response
+    // An unsuccessful response string as a response
     // Use an error middleware here or return the response from Filestack
     res.json({ error: res.filestack })
   }

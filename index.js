@@ -4,30 +4,32 @@ const omit = require('lodash.omit')
 
 const debug = require('debug')('express-filestack')
 
+// The upload won't work without www in the URL ¯\_(ツ)_/¯
+const FILESTACK_API_BASE_URL = 'https://www.filestackapi.com/api'
+
 /**
  * Express middleware to pipe multipart/form-data requests to Filestack API.
  *
  * @param {*} opts
  */
 module.exports = function (opts) {
-  let uploadUrl = process.env.FILESTACK_UPLOAD_URL
-
-  if (opts.uploadUrl) {
-    uploadUrl = opts.uploadUrl
-  }
+  const uploadUrl = opts.uploadUrl || process.env.FILESTACK_UPLOAD_URL
 
   if (opts.debug === true) {
     debug.enabled = true
   }
 
   return function (req, res, next) {
-    // The upload won't work without www in the URL ¯\_(ツ)_/¯
-    if (uploadUrl.indexOf('https://www.filestackapi.com/api') !== 0) {
-      throw new Error('Please use a valid Filestack upload url')
+    if (uploadUrl.indexOf(FILESTACK_API_BASE_URL) !== 0) {
+      throw new Error('Please supply a valid Filestack upload url')
     }
 
-    if (opts.omitHeaders && Array.isArray(opts.omitHeaders)) {
-      req.headers = omit(req.headers, opts.omitHeaders)
+    if (opts.omitHeaders) {
+      if (!Array.isArray(opts.omitHeaders)) {
+        throw new Error(`Expected "omitHeaders" to be an Array but recieved ${typeof omitHeaders}`)
+      } else {
+        req.headers = omit(req.headers, opts.omitHeaders)
+      }
     }
 
     const options = {
