@@ -14,6 +14,7 @@ const FILESTACK_API_BASE_URL = 'https://www.filestackapi.com/api'
  */
 module.exports = function (opts) {
   const uploadUrl = opts.uploadUrl || process.env.FILESTACK_UPLOAD_URL
+  const originalHeaders = req.headers
 
   if (opts.debug === true) {
     debug.enabled = true
@@ -66,6 +67,9 @@ module.exports = function (opts) {
           res.filestack = decoded.toString()
 
           debug('file upload response %s', res.filestack)
+
+          // Set headers from the original request
+          req.headers = originalHeaders
 
           next()
         })
