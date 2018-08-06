@@ -55,15 +55,17 @@ app.post('/uploads', filestack, (req, res) => {
 app.listen(5000, () => console.log('Example app listening on port 5000!'));
 ```
 
-## Caveat
+## Caveats
 
-The name of the `input` field should be set as `fileUpload`.
+* The name of the `input` field should be set to `fileUpload`. [This example](https://www.filestack.com/docs/concepts/uploading/#basic-uploads) in the Filestack docs uses `fileUpload` as the key to upload a file.
 
-```html
-<form action="/uploads" method="post" enctype="multipart/form-data">
-  <input type="file" name="fileUpload">
-</form>
-```
+  ```html
+  <form action="/uploads" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileUpload">
+  </form>
+  ```
+
+* All requests for [uploading a file](https://www.filestack.com/docs/api/file/#api-endpoint) should be sent to `https://www.filestackapi.com/api`. Upload won't work without www in the URL ¯\\_(ツ)_/¯.
 
 ## Options
 
