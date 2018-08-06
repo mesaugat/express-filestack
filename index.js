@@ -14,13 +14,14 @@ const FILESTACK_API_BASE_URL = 'https://www.filestackapi.com/api'
  */
 module.exports = function (opts) {
   const uploadUrl = opts.uploadUrl || process.env.FILESTACK_UPLOAD_URL
-  const originalHeaders = req.headers
 
   if (opts.debug === true) {
     debug.enabled = true
   }
 
   return function (req, res, next) {
+    const originalHeaders = req.headers
+
     if (uploadUrl.indexOf(FILESTACK_API_BASE_URL) !== 0) {
       throw new Error('Please supply a valid Filestack upload url')
     }
