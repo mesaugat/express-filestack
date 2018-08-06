@@ -83,7 +83,9 @@ app.post('/uploads', filestack({ uploadUrl }), (req, res) => {
 
 ### omitHeaders
 
-If you have application specific headers set in the original request omit those headers being sent to Filestack. This option should be an array of string(s). `omitHeaders` is useful if you don't want to send authorization headers that is needed for your application and does not need to be piped to Filestack for security reasons.
+If you have application specific headers set in the original request omit those headers being sent to Filestack. This option should be an array of string(s).
+
+`omitHeaders` is useful if you don't want to send authorization headers that is needed for your application and does not need to be piped to Filestack for security reasons. The original headers will remain intact when going to the next middleware.
 
 ```js
 const uploadUrl = 'https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqjkcprFyUN4c'
