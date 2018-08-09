@@ -30,7 +30,7 @@ FILESTACK_UPLOAD_URL='https://www.filestackapi.com/api/store/S3?key=4kBkTCq6QTqj
 
 On completion the middleware will attach a `filestack` key to the express response object. It can be accessed as `res.filestack`. The key will contain a stringified JSON object if the upload is succcessful.
 
-**Note: For cases when the API key is wrong, `res.filestack` will contain a response string and not stringified JSON.**
+**Note: For cases when the API key is wrong or the upload limit is hit, `res.filestack` will contain a response string and not stringified JSON.**
 
 ```js
 const express = require('express')
