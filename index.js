@@ -15,6 +15,14 @@ const FILESTACK_API_BASE_URL = 'https://www.filestackapi.com/api'
 module.exports = function (opts) {
   const uploadUrl = opts.uploadUrl || process.env.FILESTACK_UPLOAD_URL
 
+  if (!uploadUrl) {
+    throw new Error('Filestack upload url is not set')
+  }
+
+  if (opts.omitHeaders && !Array.isArray(opts.omitHeaders)) {
+    throw new Error(`Expected "omitHeaders" to be an Array but recieved ${typeof opts.omitHeaders}`)
+  }
+
   if (opts.debug === true) {
     debug.enabled = true
   }
@@ -26,13 +34,7 @@ module.exports = function (opts) {
       throw new Error('Please supply a valid Filestack upload url')
     }
 
-    if (opts.omitHeaders) {
-      if (!Array.isArray(opts.omitHeaders)) {
-        throw new Error(`Expected "omitHeaders" to be an Array but recieved ${typeof omitHeaders}`)
-      } else {
-        req.headers = omit(req.headers, opts.omitHeaders)
-      }
-    }
+    req.headers = omit(req.headers, opts.omitHeaders)
 
     const options = {
       url: uploadUrl,
