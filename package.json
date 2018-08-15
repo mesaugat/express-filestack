@@ -17,6 +17,7 @@
     "multipart"
   ],
   "scripts": {
+    "test": "ava",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
@@ -26,6 +27,10 @@
     "request": "^2.87.0"
   },
   "devDependencies": {
+    "ava": "^1.0.0-beta.7",
+    "express": "^4.16.3",
+    "form-data": "^2.3.2",
+    "got": "^9.0.0",
     "standard": "^11.0.1"
   }
 }
