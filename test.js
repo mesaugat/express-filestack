@@ -25,7 +25,7 @@ test('Middleware should thrown an error if omitHeaders is not an array', t => {
   const omitHeaders = '¯\\_(ツ)_/¯'
   const error = t.throws(() => filestack({ omitHeaders, uploadUrl: FAKE_FILESTACK_UPLOAD_URL }), Error)
 
-  t.is(error.message, `Expected "omitHeaders" to be an Array but recieved ${typeof omitHeaders}`)
+  t.is(error.message, `Expected "omitHeaders" to be an Array but received ${typeof omitHeaders}`)
 })
 
 test('Upload should fail if the API key is invalid', async t => {

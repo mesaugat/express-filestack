@@ -20,7 +20,7 @@ module.exports = function (opts) {
   }
 
   if (opts.omitHeaders && !Array.isArray(opts.omitHeaders)) {
-    throw new Error(`Expected "omitHeaders" to be an Array but recieved ${typeof opts.omitHeaders}`)
+    throw new Error(`Expected "omitHeaders" to be an Array but received ${typeof opts.omitHeaders}`)
   }
 
   if (opts.debug === true) {
